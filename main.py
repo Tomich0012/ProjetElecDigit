@@ -2,6 +2,7 @@ from machine import Pin, I2C
 import utime
 from lcd_api import LcdApi
 from pico_i2c_lcd import I2cLcd
+import neopixel
 
 I2C_ADDR     = 0x27
 I2C_NUM_ROWS = 4
@@ -14,13 +15,14 @@ echo = Pin(20, Pin.IN)
 
 
 
-ledRed = machine.Pin(2, machine.Pin.OUT)
-ledGreen = machine.Pin(3, machine.Pin.OUT)
+PIN = 2  # numéro de la broche de données
+NUM_LEDS = 10  # nombre de leds à utiliser
+strip = neopixel.NeoPixel(machine.Pin(PIN), NUM_LEDS)
 
-ledGreen.off()
-ledRed.off()
-alerte = 10
-#int(input('Quelle est la distance min?') )
+
+strip[0] = (0, 0, 0)
+strip.write()
+alerte = int(input('Quelle est la distance min?') )
 
 def ultra():
    trigger.low()
@@ -38,13 +40,16 @@ def ultra():
    print(distance + " cm")   
    return str(distance)
 
+def changerLedColor(color):
+    for i in range(NUM_LEDS):
+        strip[i] = color
+    strip.write()
+
 def checkDistance(cm):
     if float(cm) < alerte:
-        ledGreen.off()
-        ledRed.on()
+        changerLedColor((255, 0, 0))
     else:
-        ledGreen.on()
-        ledRed.off()
+        changerLedColor((0, 255, 0))
         
 while True:
     lcd.clear()
