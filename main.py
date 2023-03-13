@@ -15,8 +15,8 @@ echo = Pin(20, Pin.IN)
 
 
 
-PIN = 2  # numéro de la broche de données
-NUM_LEDS = 10  # nombre de leds à utiliser
+PIN = 2  
+NUM_LEDS = 10  
 strip = neopixel.NeoPixel(machine.Pin(PIN), NUM_LEDS)
 
 
