@@ -10,19 +10,20 @@ I2C_NUM_COLS = 20
 
 i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=400000)
 lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)    
-trigger = Pin(21, Pin.OUT)
-echo = Pin(20, Pin.IN)
+trigger = Pin(27, Pin.OUT)
+echo = Pin(26, Pin.IN)
 
 
 
-PIN = 2  
-NUM_LEDS = 10  
+PIN = 15  
+NUM_LEDS = 10 
 strip = neopixel.NeoPixel(machine.Pin(PIN), NUM_LEDS)
 
 
 strip[0] = (0, 0, 0)
 strip.write()
-alerte = int(input('Quelle est la distance min?') )
+alerte = 11
+#int(input('Quelle est la distance min?') )
 
 def ultra():
    trigger.low()
@@ -57,11 +58,4 @@ while True:
     checkDistance(cm)
     lcd.putstr(cm)
     utime.sleep_ms(500)
-    
-    
-    
-
-    
-
-  
     
