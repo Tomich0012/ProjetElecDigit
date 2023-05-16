@@ -16,7 +16,7 @@ echo = Pin(26, Pin.IN)
 
 
 PIN = 15  
-NUM_LEDS = 10 
+NUM_LEDS = 28 
 strip = neopixel.NeoPixel(machine.Pin(PIN), NUM_LEDS)
 
 
