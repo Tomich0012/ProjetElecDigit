@@ -16,7 +16,7 @@ def read_distance():
             distance, alert_value = map(float, line.split(','))
             distance_label.config(text='Distance: {:.1f} cm'.format(distance))
             if distance < alert_value:
-                alert_label.config(text='Alert! Distance is less than alert value.')
+                alert_label.config(text='!!!!!! ALERT !!!!!!!', fg='red')
             else:
                 alert_label.config(text='')
 
